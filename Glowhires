@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Hires | Recruit. Prepare. Empower.</title>
+    <meta name="description" content="Glow Hires helps healthcare professionals and job seekers strengthen their applications, prepare for interviews and move forward with confidence.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Premium Minimal Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS Setup -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // We'll add a toggle for demonstration, defaults to system
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#061B5C',
+                        royal: '#0A66FF',
+                        gold: '#F6B800',
+                        soft: '#EEF5FF',
+                        darkBg: '#020817',
+                        darkCard: '#0f172a',
+                    },
+                    backgroundImage: {
+                        'accent-gradient': 'linear-gradient(to right, #061B5C, #0A66FF)',
+                        'radial-glow': 'radial-gradient(circle at center, rgba(10,102,255,0.15) 0%, rgba(255,255,255,0) 70%)',
+                        'radial-glow-dark': 'radial-gradient(circle at center, rgba(10,102,255,0.2) 0%, rgba(2,8,23,0) 70%)',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Premium Utilities */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark .glass-nav {
+            background: rgba(2, 8, 23, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(6, 27, 92, 0.05);
+        }
+
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animated Text Gradient */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, #061B5C, #0A66FF);
+        }
+
+        .dark .text-gradient {
+            background-image: linear-gradient(90deg, #60a5fa, #3b82f6);
+        }
+
+        /* FAQ Accordion Transitions */
+        .faq-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+        .faq-content.open {
+            grid-template-rows: 1fr;
+        }
+        .faq-content > div {
+            overflow: hidden;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        
+        /* Floating Whatsapp Button Pulse */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-pulse { animation: pulse-ring 2s infinite; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="352502-removebg-preview~2.png" alt="Glow Hires Logo" class="h-10 w-auto object-contain drop-shadow-md">
+                    <span class="font-bold text-2xl tracking-tight text-navy dark:text-white">Glow Hires</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-sm font-medium hover:text-royal transition-colors dark:hover:text-blue-400">Services</a>
+                    <a href="#why-us" class="text-sm font-medium hover:text-royal transition-colors dark:hover:text-blue-400">Why Us</a>
+                    <a href="#how-it-works" class="text-sm font-medium hover:text-royal transition-colors dark:hover:text-blue-400">Process</a>
+                    <a href="#faq" class="text-sm font-medium hover:text-royal transition-colors dark:hover:text-blue-400">FAQ</a>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i class="ph ph-moon text-xl dark:hidden"></i>
+                        <i class="ph ph-sun text-xl hidden dark:block text-yellow-400"></i>
+                    </button>
+
+                    <a href="https://wa.me/447404627304" target="_blank" class="bg-navy hover:bg-royal dark:bg-royal dark:hover:bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                        Let's Talk
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="themeToggleMobile" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i class="ph ph-moon text-xl dark:hidden"></i>
+                        <i class="ph ph-sun text-xl hidden dark:block text-yellow-400"></i>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-2xl text-navy dark:text-white focus:outline-none">
+                        <i class="ph ph-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 absolute w-full shadow-2xl">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#services" class="block px-3 py-3 rounded-lg text-base font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Services</a>
+                <a href="#why-us" class="block px-3 py-3 rounded-lg text-base font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Why Us</a>
+                <a href="#how-it-works" class="block px-3 py-3 rounded-lg text-base font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Process</a>
+                <a href="#faq" class="block px-3 py-3 rounded-lg text-base font-medium hover:bg-slate-50 dark:hover:bg-slate-800">FAQ</a>
+                <a href="https://wa.me/447404627304" target="_blank" class="mt-4 w-full bg-accent-gradient text-white px-6 py-3 rounded-xl text-center font-semibold flex items-center justify-center gap-2">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                    Message on WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-soft/50 to-transparent dark:from-darkBg dark:to-darkBg">
+        <!-- Floating Animated Background Shapes -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-royal/20 dark:bg-royal/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-soft/50 dark:bg-blue-900/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-gold/20 dark:bg-gold/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <!-- Hero Content -->
+                <div data-aos="fade-right" class="text-center lg:text-left z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 shadow-sm mb-6">
+                        <span class="flex h-2 w-2 rounded-full bg-royal animate-pulse"></span>
+                        <span class="text-xs font-semibold text-navy dark:text-blue-300 uppercase tracking-wider">Recruit. Prepare. Empower.</span>
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+                        Stop Applying <br class="hidden lg:block"> Blindly. <br>
+                        <span class="text-gradient">Secure More Interviews.</span>
+                    </h1>
+                    <p class="text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Glow Hires helps healthcare professionals and job seekers strengthen their applications, prepare for interviews, and move forward with confidence.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://wa.me/447404627304" target="_blank" class="group bg-accent-gradient text-white rounded-full px-8 py-4 font-semibold text-lg hover:shadow-[0_8px_30px_rgba(10,102,255,0.4)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                            <i class="ph-fill ph-whatsapp-logo text-2xl group-hover:scale-110 transition-transform"></i>
+                            Message Us on WhatsApp
+                        </a>
+                        <a href="#services" class="bg-white dark:bg-transparent text-navy dark:text-white border border-slate-200 dark:border-slate-600 rounded-full px-8 py-4 font-semibold text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
+                            Explore Services
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-wrap justify-center lg:justify-start gap-6 lg:gap-8 opacity-80">
+                        <div class="flex items-center gap-2 text-sm font-medium">
+                            <i class="ph-fill ph-check-circle text-royal"></i> Professional Support
+                        </div>
+                        <div class="flex items-center gap-2 text-sm font-medium">
+                            <i class="ph-fill ph-check-circle text-royal"></i> Career Guidance
+                        </div>
+                        <div class="flex items-center gap-2 text-sm font-medium">
+                            <i class="ph-fill ph-check-circle text-royal"></i> Interview Prep
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Imagery -->
+                <div data-aos="fade-left" class="relative hidden lg:block h-[600px] w-full z-10">
+                    <!-- Main Image Frame -->
+                    <div class="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800 animate-float">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop" alt="Healthcare Professional" class="w-full h-full object-cover">
+                        <!-- Subtle overlay for branding -->
+                        <div class="absolute inset-0 bg-navy/10 mix-blend-overlay"></div>
+                    </div>
+
+                    <!-- Floating Stats Card -->
+                    <div class="absolute -bottom-6 -left-12 glass-card p-6 rounded-2xl flex items-center gap-4 animate-float" style="animation-delay: 1s;">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="ph-fill ph-trend-up text-green-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Success Rate</p>
+                            <p class="text-2xl font-bold text-navy dark:text-white">94%</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Message Card -->
+                    <div class="absolute top-12 -right-8 glass-card p-4 rounded-2xl flex items-center gap-3 animate-float" style="animation-delay: 2s;">
+                        <div class="w-10 h-10 rounded-full bg-accent-gradient flex items-center justify-center text-white">
+                            <i class="ph-fill ph-chat-teardrop-text"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-navy dark:text-white">"Got the NHS Job!"</p>
+                            <div class="flex text-gold text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-darkCard relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Real Preparation. <span class="text-royal">Real Progress.</span></h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Join hundreds of healthcare professionals who transformed their careers with our tailored support.</p>
+            </div>
+
+            <!-- Stats Counters -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 border-b border-slate-100 dark:border-slate-800 pb-16" id="stats">
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="text-4xl md:text-5xl font-extrabold text-navy dark:text-white mb-2 flex justify-center">
+                        <span class="counter" data-target="500">0</span>+
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Applications Supported</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-4xl md:text-5xl font-extrabold text-navy dark:text-white mb-2 flex justify-center">
+                        <span class="counter" data-target="850">0</span>+
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Interview Invitations</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-4xl md:text-5xl font-extrabold text-navy dark:text-white mb-2 flex justify-center">
+                        <span class="counter" data-target="98">0</span>%
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Happy Clients</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-4xl md:text-5xl font-extrabold text-navy dark:text-white mb-2 flex justify-center">
+                        <span class="counter" data-target="300">0</span>+
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Success Stories</p>
+                </div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex text-gold mb-4 text-xl">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-lg font-medium text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                        "I secured three NHS interviews after working with Glow Hires. The level of det
